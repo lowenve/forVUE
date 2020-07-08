@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/vue2.6.10.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h3>{{msg}}</h3>
+        <button @click='start'>跑起来</button>
+        <button @click='stop'>停下来</button>
+
+    </div>
+    
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg:'可以清心也',
+                timer: null,
+            },
+            methods:{
+                start: function(){
+                    if(this.timer != null) return
+                    var _this = this;
+                    this.timer = setInterval(function(){
+                        var letter = _this.msg.substring(0,1)
+                        var rest = _this.msg.substring(1)
+                        _this.msg = rest + letter
+                    }, 100)
+                },
+                stop: function(){
+                    clearInterval(this.timer)
+                    this.timer = null
+                }
+            }
+        })
+    </script>
+</body>
+</html>

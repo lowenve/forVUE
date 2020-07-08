@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/vue2.6.10.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        
+        <p v-if='seen'>现在你看到我了</p>
+        <p v-else>哈哈哈，我有时候看不见呢哈哈</p>
+
+        <ol>
+            <li v-for='td in todos'>
+                {{ td.text }}
+            </li>
+        </ol>
+
+        <p>{{message}}</p>
+        <button @click='reverseMessage'>反转消息</button>
+        <br>
+        <input v-model='message' />
+    </div>
+    
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                seen:true,
+                todos:[
+                    {text:'J工'},
+                    {text:'python'},
+                    {text:'Django'},
+                    {text:'C+++++'},
+                    {text:'Rust'}
+                ],
+                message: 'abc'
+            },
+            methods:{
+                reverseMessage:function(){
+                    this.message = this.message.split('').reverse().join('')
+                }
+            }
+        })
+    </script>
+</body>
+</html>
