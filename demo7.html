@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/vue2.6.10.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- v-if关键字不接受参数 -->
+        <p v-if='seen'>现在你能看到我</p>
+        <a v-bind:href='url'>孙悟空间</a><br>
+        <a v-on:click='doSomething'>.......</a>
+        <div v-once>
+            <h1>comment</h1>
+            <p>{{ msg }}</p>
+        </div>
+        <span v-pre>{{ msg }}</span>
+        <div v-cloak>
+            {{ msg }}
+        </div>
+        <p v-show='isDisplay'>我是v-show指令</p>
+        <br>
+        <form v-on:submit.prevent='onSubmit'>
+            <button type="submit">提交一下子</button>
+        </form>
+
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                seen: true,
+                url: 'http://www.sunwu.zone',
+                msg: 'kwg kwg kwg kwg kwg',
+                isDisplay: true,
+            },
+            methods: {
+                doSomething:function(){
+                    alert('哈哈')
+                },
+                onSubmit:function(){
+                    alert('好的，已经收到您的提交了～')
+                }
+            }
+            
+        })
+    </script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+
+    </style>
+</body>
+</html>
