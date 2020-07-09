@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/vue2.6.10.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 文本插值{{}}语法 -->
+        <span>message:{{ msg }}</span>
+        <span v-html='msg'></span>
+        
+    </div>
+
+    <script>
+        // 文本插值语法
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: "<a href='https://www.baidu.com'>baidu</a>"
+            },
+            
+        })
+    </script>
+</body>
+</html>
