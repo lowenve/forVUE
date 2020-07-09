@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/vue2.6.10.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <counter ref='bt1' @change='handlerChange'></counter>
+        <counter ref='bt2' @change='handlerChange'></counter>
+        <p>total: {{ total }}</p>
+    </div>
+    
+
+    <script>
+        Vue.component('counter',{
+            data: function(){
+                return {
+                    number: 0
+                }
+            },
+            template: '<button @click="handler">{{ number }}</button>',
+            methods: {
+                handler:function(){
+                    this.number ++
+                    this.$emit('change')
+                }
+            }
+        })
+        
+        var app = new Vue({
+            el: '#app',
+            data: {
+                total: 0
+            },
+            methods: {
+                handlerChange: function(){
+                    this.total = this.$refs.bt1.number + this.$refs.bt2.number
+                }
+            }
+        })
+    </script>
+</body>
+</html>

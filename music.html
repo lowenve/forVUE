@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/vue2.6.10.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <audio autoplay controls :src='playingSong' @ended='nextSong'>该浏览器不支持audio标签</audio>
+
+        <ul>
+            <li v-for='(song, index) in songs' @click='selectSong(index)'>
+                <h3>歌名：{{ song.name }}</h3>
+                <p>演唱者：{{ song.singer }}</p>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                currentIndex: 0,
+                songs:[
+                    {id:1, src:'./songs/01.mp3', name:'The power of love', singer:'张三'},
+                    {id:2, src:'./songs/02.mp3', name:'The power of ', singer:'李四'},
+                    {id:3, src:'./songs/03.mp3', name:'The power  love', singer:'王五'},
+                    {id:4, src:'./songs/04.mp3', name:'The  of love', singer:'肖建金'},
+                ]
+            },
+            computed: {
+                playingSong:function(){
+                    // 返回当前索引歌曲的文件地址
+                    return this.songs[this.currentIndex].src
+                }
+            },
+            methods: {
+                nextSong: function(){
+                    this.currentIndex++
+                    // 如何是最后一首歌，就把当前索引 置为0
+                    if (this.currentIndex === this.songs.length){
+                        this.currentIndex = 0
+                    }
+                },
+                selectSong:function(index){
+                    // 点播功能
+                    this.currentIndex = index
+                }
+            }
+            
+        })
+    </script>
+</body>
+</html>
